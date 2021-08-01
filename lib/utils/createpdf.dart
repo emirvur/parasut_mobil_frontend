@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:muhmobil/model/dtofatode.dart';
@@ -308,7 +307,7 @@ Future ekstrepdftedar(String ad, List<Dtofatode> lis) async {
   return x;
 }
 
-Future izlemepdf() async {
+/*Future izlemepdf() async {
   final pdf = pw.Document();
   pdf.addPage(pw.Page(
       build: (pw.Context context) => pw.Column(children: [
@@ -341,4 +340,4 @@ Future izlemepdf() async {
   print("66");
   // PDFViewer(document:z,zoomSteps: 1, );
   return z;
-}
+}*/

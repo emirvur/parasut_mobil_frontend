@@ -38,13 +38,10 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
     if (_tabController.indexIsChanging) {
       setState(() {
         if (_tabController.index == 1 || _tabController.index == 2) {
-          print("1de");
           actgoster = false;
         } else if (_tabController.index == 0) {
-          print("1de");
           actgoster = true;
         }
-        print("setstewf");
       });
     }
   }
@@ -57,23 +54,6 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
       _handleTabSelection();
     });
     contara = TextEditingController();
-    /*  APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paragid = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paragid[0].alinan.toString());
-    });
-    APIServices.odefatal().then((value) {
-      setState(() {
-        lis = value;
-        _isloading = false;
-      });
-    });
-    APIServices.verial().then((value) {
-      setState(() {
-        paragid = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-        odmik = paragid[0].toplammiktar - paragid[0].alinan;
-        _isloading = false;
-      });
-    });*/
 
     Future.wait([
       APIServices.odefatal(),
@@ -298,12 +278,6 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
                   children: [
                     InkWell(
                         onTap: () {
-                          /*
- APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });
-                          */
                           APIServices.odefatal().then((value) {
                             setState(() {
                               Navigator.of(context).pop();
@@ -319,12 +293,6 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
                     ),
                     InkWell(
                         onTap: () {
-                          /*
- APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });
-                          */
                           APIServices.alisgun().then((value) {
                             setState(() {
                               Navigator.of(context).pop();
@@ -340,12 +308,6 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
                     ),
                     InkWell(
                         onTap: () {
-                          /*
- APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });
-                          */
                           APIServices.alishafta().then((value) {
                             setState(() {
                               Navigator.of(context).pop();
@@ -361,13 +323,6 @@ class _GiderlerState extends State<Giderler> with TickerProviderStateMixin {
                     ),
                     InkWell(
                         onTap: () {
-                          /*
- APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });
-                          */
-
                           APIServices.alisay().then((value) {
                             setState(() {
                               Navigator.of(context).pop();
@@ -565,16 +520,6 @@ class _AlisodenecekState extends State<Alisodenecek>
     print("ilktee");
     bugun = DateTime.now();
     bugun = DateTime(bugun.year, bugun.month, bugun.day);
-    /*   APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paraode = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paraode[0].alinan.toString());
-    });
-    APIServices.odefatalacik().then((value) {
-      setState(() {
-        print(value.toString());
-        listdtoden = value;
-      });
-    });*/
 
     Future.wait([
       APIServices.odenecekfatal(),
@@ -582,9 +527,6 @@ class _AlisodenecekState extends State<Alisodenecek>
     ]).then((value) {
       setState(() {
         listdtoden = value[0];
-        //      paraode = value[1].where((i) => i.tur == 1 && i.durum == 0).toList();
-        //print(paraode[0].alinan.toString());
-        // _isloading = false;
       });
     });
   }
@@ -738,10 +680,7 @@ class _AlisgecikState extends State<Alisgecik>
     bugun = DateTime.now();
     bugun = DateTime(bugun.year, bugun.month, bugun.day);
     print("ilktee");
-    /*APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paragec = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paragec[0].alinan.toString());
-    });*/
+
     APIServices.odefatalkapali().then((value) {
       setState(() {
         print(value.toString());

@@ -64,13 +64,8 @@ class _TedarayrintiState extends State<Tedarayrinti>
     conacik = TextEditingController();
     condeg = TextEditingController();
 
-    /*APIServices.kasalistal().then((value) {
-      kasalist = value;
-      kas = kasalist[0];
-    });*/
     Future.wait([
       APIServices.safcarial(widget.dt.cariId),
-      //  APIServices.satcarifatal(widget.dt.cariId),
     ]).then((value) {
       setState(() {
         _isloading = false;

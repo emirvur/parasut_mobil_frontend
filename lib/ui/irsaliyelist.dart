@@ -6,7 +6,7 @@ import 'package:muhmobil/services/apiservices.dart';
 import 'package:muhmobil/ui/satisfatayrinti.dart';
 import 'package:muhmobil/ui/yenisatisfat.dart';
 import 'package:muhmobil/utils/load.dart';
-import 'package:muhmobil/utils/testsearch.dart';
+import 'package:muhmobil/ui/irsaliyeara.dart';
 
 import '../model/dtofattahs.dart';
 import 'irsayrinti.dart';
@@ -137,7 +137,7 @@ class _IrsaliyelistState extends State<Irsaliyelist>
                   Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Search(title: "w")))
+                              builder: (context) => Irsaliyeara(title: "")))
                       .then((value) {
                     if (value == 1) {
                       APIServices.irsaliyeal().then((value) {
@@ -401,112 +401,3 @@ class Irsgelen extends StatelessWidget {
     );
   }
 }
-/*
-class Irsgelen extends StatefulWidget {
-  final bool isara;
-  Irsgelen(this.isara);
-
-  @override
-  _IrsgelenState createState() => _IrsgelenState();
-}
-
-class _IrsgelenState extends State<Irsgelen>
-    with AutomaticKeepAliveClientMixin {
-  List<Dtoirsaliye> listdttahsedil = [];
-  List<Dtoirsaliye> lisaratahsedil = [];
-
-  @override
-  void initState() {
-    super.initState();
-    print("ilktee");
-    APIServices.satfatalacikfat().then((value) {
-      setState(() {
-        print(value.toString());
-        listdttahsedil = value;
-      });
-    });
-  }
-
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      //separatorBuilder: (context, index) => Divider(
-      //    color: Colors.black,  ),
-      physics: ScrollPhysics(),
-      shrinkWrap: true,
-      itemCount:
-          widget.isara == true ? lisaratahsedil.length : listdttahsedil.length,
-      itemBuilder: (context, index) {
-        Dtofattahs dt = widget.isara == true
-            ? lisaratahsedil[index]
-            : listdttahsedil[index];
-        return Card(
-            elevation: 0,
-            margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
-                ),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Satisfatayrinti(dt)),
-                  );
-                },
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-                leading: Container(
-                  padding: EdgeInsets.all(6.0),
-                  decoration: new BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(4),
-                      border: new Border(
-                          right: new BorderSide(width: 1.0, color: Colors.grey),
-                          left: new BorderSide(width: 1.0, color: Colors.grey),
-                          top: new BorderSide(width: 1.0, color: Colors.grey),
-                          bottom:
-                              new BorderSide(width: 1.0, color: Colors.grey))),
-                  child: Icon(Icons.file_copy, color: Colors.blue),
-                ),
-                title: Text(
-                  dt.fataciklama,
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                subtitle: Row(
-                  children: <Widget>[
-                    dt.duztarih == null
-                        ? Text("nu")
-                        : Text(
-                            " ${dt.cariad},${dt.duztarih.substring(0, 4)}",
-                            style: TextStyle(color: Colors.grey),
-                          )
-                    //      Text(" Intermediate", style: TextStyle(color: Colors.black))
-                  ],
-                ),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "3 gün", //   " ${dt.geneltoplam - dt.alinmism}",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    dt.vadta == null
-                        ? Text("nu")
-                        : Text(" ${dt.vadta.substring(0, 4)}",
-                            style: TextStyle(color: Colors.grey))
-                  ],
-                ),
-              ),
-            ));
-      },
-    );
-  }
-}*/

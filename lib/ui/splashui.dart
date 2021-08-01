@@ -21,9 +21,11 @@ class _SplashState extends State<Splash> {
   tokenal() async {
     print("tokenda");
     SharedPreferences sp = await SharedPreferences.getInstance();
+    print("sp");
     var token = sp.getString("token" ?? "yok");
     APIServices.tok = token;
     APIServices.tokentest().then((v) {
+      print(v);
       if (v == 0) {
         print("00");
         Navigator.pushAndRemoveUntil(
@@ -56,7 +58,8 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     print("splash uida");
     return Scaffold(
-      body: Container( color: Colors.grey[100],child: Center(child: ColorLoader3())),
+      body: Container(
+          color: Colors.grey[100], child: Center(child: ColorLoader3())),
     );
   }
 }

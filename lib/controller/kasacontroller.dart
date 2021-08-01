@@ -25,7 +25,6 @@ class KasaayrintiController extends GetxController {
 
   @override
   void onInit() {
-    print("kasaatrinticontt");
     fetchfinaltodo(l.kasaid);
     g = ba;
 
@@ -35,10 +34,7 @@ class KasaayrintiController extends GetxController {
   void kasaarttir(num x) async {
     isLoading(true);
     try {
-      print(g.toString());
-      print("kasaarttrri");
       g = g + x;
-      print(g.toString());
     } finally {
       isLoading(false);
     }
@@ -58,10 +54,8 @@ class KasaayrintiController extends GetxController {
 
   void guncelle(Dtokasahar v) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("gueelel kasaaaa");
       todoList.add(v);
     } finally {
       isLoading(false);
@@ -75,7 +69,6 @@ class KasaController extends GetxController {
 
   @override
   void onInit() {
-    print("kasacontt");
     fetchfinaltodo();
     super.onInit();
   }
@@ -94,29 +87,15 @@ class KasaController extends GetxController {
 
   void guncelle(int index, num bak) async {
     isLoading(true);
-    print("trydan once");
-    print(todoList[0].kasaAd);
+
     try {
-      print("tryddadsad");
       for (var i in todoList) {
         print(i.kasaid.toString());
-        print("fordaa");
+
         if (i.kasaid == index) {
-          print("bakk");
-          print(i.bakiye.toString());
           i.bakiye = i.bakiye + bak;
-          print(i.bakiye.toString());
         }
-        print("cıkrtııt");
       }
-      /* todoList.map((element) {
-        print(element.kasaid.toString());
-        print("fordaa");
-        if (element.kasaid == index) {
-          element.bakiye = bak;
-        }
-        print("cıkrtııt");
-      });*/
     } finally {
       isLoading(false);
     }
@@ -780,33 +759,7 @@ class _KasaayrinState extends State<Kasaayrin> with TickerProviderStateMixin {
             ],
           ),
         ),
-        //   title: Text("Satışlar"),
         actions: [
-          /*Container(
-              padding: EdgeInsets.all(6.0),
-              decoration: new BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(4),
-                /* border: new Border(
-                                      right: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      left: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      top: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      bottom: new BorderSide(
-                                          width: 1.0, color: Colors.grey))*/
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    "Ekstre",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),*/
           IconButton(
             icon: Icon(
               FontAwesomeIcons.ellipsisV, size: 18,
@@ -891,19 +844,6 @@ class Tabkasagecmis extends StatefulWidget {
 }
 
 class _TabkasagecmisState extends State<Tabkasagecmis> {
-  /* List<Dtofattahs> lis = [];
-  @override
-  void initState() {
-    super.initState();
-    print("ilktee");
-    APIServices.satcarifatal(widget.cariId).then((value) {
-      setState(() {
-        print(value.toString());
-        lis = value;
-      });
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -915,108 +855,76 @@ class _TabkasagecmisState extends State<Tabkasagecmis> {
         print(th.durum.toString());
         print("yy");
         return Card(
-                elevation: 0,
-                margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
-                    ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
-                  child: ListTile(
-                    onTap: () {
-                      /*    Navigator.push(
+            elevation: 0,
+            margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
+                ),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
+              child: ListTile(
+                onTap: () {
+                  /*    Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => Satisfatayrinti(th)));*/
-                    },
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
-                    leading: Container(
-                      padding: EdgeInsets.all(6.0),
-                      decoration: new BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(4),
-                          border: new Border(
-                              right: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              left: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              top: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              bottom: new BorderSide(
-                                  width: 1.0, color: Colors.grey))),
-                      child: Icon(FontAwesomeIcons.fileAlt,
-                          color: th.durum == 1 ? Colors.blue : Colors.red),
+                },
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
+                leading: Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: new BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(4),
+                      border: new Border(
+                          right: new BorderSide(width: 1.0, color: Colors.grey),
+                          left: new BorderSide(width: 1.0, color: Colors.grey),
+                          top: new BorderSide(width: 1.0, color: Colors.grey),
+                          bottom:
+                              new BorderSide(width: 1.0, color: Colors.grey))),
+                  child: Icon(FontAwesomeIcons.fileAlt,
+                      color: th.durum == 1 ? Colors.blue : Colors.red),
+                ),
+                title: Text(
+                  th.durum == 1 ? "Tahsilat" : "Ödeme",
+                  style: Load.font(0),
+                ),
+                subtitle: Row(
+                  children: [
+                    Text(
+                      " ${th.miktaraciklamasi},",
+                      style: Load.font(1),
                     ),
-                    title: Text(
-                      th.durum == 1 ? "Tahsilat" : "Ödeme",
+                    Text(
+                      th.durum == 1
+                          ? "${th.tediltar}"
+                          : th.durum == 0
+                              ? "${th.odenmistar}"
+                              : "",
+                      style: Load.font(1),
+                    ),
+                  ],
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      th.durum == 2
+                          ? Load.numfor.format(th.miktar.round())
+                          : th.durum == 1
+                              ? Load.numfor.format(th.alinmismik.round())
+                              : Load.numfor.format(th.odendimik
+                                  .round()), //   "${th.alinmismik}",
                       style: Load.font(0),
                     ),
-                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                    subtitle: Row(
-                      children: [
-                        Text(
-                          " ${th.miktaraciklamasi},",
-                          style: Load.font(1),
-                        ),
-                        Text(
-                          th.durum == 1
-                              ? "${th.tediltar}"
-                              : th.durum == 0
-                                  ? "${th.odenmistar}"
-                                  : "",
-                          style: Load.font(1),
-                        ),
-                      ],
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          th.durum == 2
-                              ? Load.numfor.format(th.miktar.round())
-                              : th.durum == 1
-                                  ? Load.numfor.format(th.alinmismik.round())
-                                  : Load.numfor.format(th.odendimik
-                                      .round()), //   "${th.alinmismik}",
-                          style: Load.font(0),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.liraSign,
-                          size: 12,
-                        )
-                      ],
-                    ),
-                  ),
-                ))
-            /*Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.download_done_outlined,
-                  color: Colors.grey,
-                ),
-                title: Text('${th.kasaid} kasa ad'),
-                subtitle: Text(
-                  "${th.tediltar}",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Text(
-                  "${th.alinmismik} TL",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                    Icon(
+                      FontAwesomeIcons.liraSign,
+                      size: 12,
+                    )
+                  ],
                 ),
               ),
-              Divider(
-                color: Colors.black,
-              )
-            ],
-          ),
-        )*/
-            ;
+            ));
       },
     );
-    // );
   }
 }

@@ -29,7 +29,6 @@ class Satisfatcontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satisfatcontte init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -96,23 +95,15 @@ class Satisfatcontroller extends GetxController {
 
   void guncelle(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
-
       for (var i in listdtofatta) {
-        print("fordaa");
         if (i.fatid == index) {
           if (i.geneltoplam - i.alinmism == deg) {
             i.durum = 1;
-            //sattahsta kaldır
-            //   listdtofatta.removeWhere((item) => item.fatid == '001');
-            // listdtofatta.remove(i);
           }
           i.alinmism = i.alinmism + deg;
         }
-        print("cıkrtııt");
       }
       tahsmik = tahsmik - deg;
     } finally {
@@ -122,10 +113,8 @@ class Satisfatcontroller extends GetxController {
 
   Future<void> siradegistir(int x) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       await Future.delayed(Duration(milliseconds: 1));
       sira = x;
     } finally {
@@ -135,11 +124,8 @@ class Satisfatcontroller extends GetxController {
 
   void satffattumekleyeni(Dtofattahs yeni) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
-
       listdtofatta.insert(0, yeni);
       tahsmik = tahsmik + yeni.geneltoplam;
     } finally {
@@ -156,7 +142,6 @@ class Satistahscontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satistahscontt init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -175,12 +160,9 @@ class Satistahscontroller extends GetxController {
 
   void guncelle(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       for (var i in listdtofatta) {
-        print("fordaa");
         if (i.fatid == index) {
           if (i.geneltoplam - i.alinmism == deg) {
             i.durum = 1;
@@ -190,8 +172,6 @@ class Satistahscontroller extends GetxController {
           }
           i.alinmism = i.alinmism + deg;
         }
-
-        print("cıkrtııt");
       }
       tahsmik = tahsmik - deg;
     } finally {
@@ -201,11 +181,8 @@ class Satistahscontroller extends GetxController {
 
   void satffattahsekleyeni(Dtofattahs yeni) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
-
       listdtofatta.insert(0, yeni);
     } finally {
       isLoading(false);
@@ -220,7 +197,6 @@ class Satisgecicontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satistahscontt init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -228,9 +204,8 @@ class Satisgecicontroller extends GetxController {
   void fetchfinaltodo() async {
     isLoading(true);
     try {
-      print("xxx");
       var todos = await APIServices.tahsgecikmisal();
-      print("yy");
+
       if (todos != null) {
         listdtofatta.value = todos;
         print(listdtofatta.length.toString());
@@ -242,23 +217,17 @@ class Satisgecicontroller extends GetxController {
 
   void guncelle(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       for (var i in listdtofatta) {
-        print("fordaa");
         if (i.fatid == index) {
           if (i.geneltoplam - i.alinmism == deg) {
             i.durum = 1;
-            //sattahsta kaldır
-            //   listdtofatta.removeWhere((item) => item.fatid == '001');
+
             listdtofatta.remove(i);
           }
           i.alinmism = i.alinmism + deg;
         }
-
-        print("cıkrtııt");
       }
       tahsmik = tahsmik - deg;
     } finally {
@@ -268,12 +237,9 @@ class Satisgecicontroller extends GetxController {
 
   void satffatgeciekleyeni(Dtofattahs yeni) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       if (DateTime.tryParse(yeni.vadta).isBefore(DateTime.now())) {
-        print("ifteee");
         listdtofatta.insert(0, yeni);
       }
     } finally {
@@ -281,703 +247,6 @@ class Satisgecicontroller extends GetxController {
     }
   }
 }
-
-/*class Satisfatayrinticontroller extends GetxController {
-  Dtofattahs dt;
-  Satisfatayrinticontroller(this.dt);
-  var isLoading = true.obs;
-  var listdtofatharta = List<Dtotahsharfat>().obs;
-  var lisdtourhar = List<Dtourunhareket>().obs;
-  var liskasa = List<Kasa>().obs;
-  num kalan = 0.obs();
-
-  @override
-  void onInit() {
-    print("satisfat ayrıntıttcontte init");
-    //  fetchfinaltodo(dt);
-
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    print("satdafataa ayrnğtğ closee");
-    super.onClose();
-  }
-
-  void fetchfinaltodo(Dtofattahs x) async {
-    isLoading(true);
-    dt = x;
-    kalan = dt.geneltoplam - dt.alinmism;
-    try {
-      var todos = await APIServices.tahsharfaticin(dt.tahsid);
-      if (todos != null) {
-        listdtofatharta.value = todos;
-      }
-      var x = await APIServices.kasalistal();
-      if (x != null) {
-        liskasa.value = x;
-      }
-      var y = await APIServices.fatuurundetay(dt.fatid);
-      if (y != null) {
-        lisdtourhar.value = y;
-      }
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  void inittekalan(num deg) async {
-    isLoading(true);
-    print("inittekalannff");
-    try {
-      print(deg.toString());
-      print(kalan.toString());
-      kalan = deg;
-      print(kalan.toString());
-      /* todoList.map((element) {
-        print(element.kasaid.toString());
-        print("fordaa");
-        if (element.kasaid == index) {
-          element.bakiye = bak;
-        }
-        print("cıkrtııt");
-      });*/
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  void guncelle(num deg) async {
-    isLoading(true);
-    print("trydan once");
-    try {
-      kalan = kalan - deg;
-      kalan == 0 ? dt.durum = 1 : dt.durum = 0;
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  void tahsharekle(Dtotahsharfat deg) async {
-    isLoading(true);
-    print("trydan once");
-    try {
-      listdtofatharta.add(deg);
-    } finally {
-      isLoading(false);
-    }
-  }
-}*/
-
-/*class Satisfatayrin extends StatefulWidget {
-  Dtofattahs dte;
-  Satisfatayrin(this.dte);
-  @override
-  _SatisfatayrinState createState() => _SatisfatayrinState();
-}
-
-class _SatisfatayrinState extends State<Satisfatayrin>
-    with TickerProviderStateMixin {
-  final _formKey = GlobalKey<FormState>();
-  TabController _tabController;
-  List<Dtourunhareket> lis = [];
-  List<Dtotahsharfat> ltah = [];
-  bool _isloading = true;
-  bool tahsilform = false;
-  DateTime selectedDate = DateTime.now();
-  TextEditingController contar;
-  GlobalKey _toolTipKey = GlobalKey();
-  //GlobalKey _toolTipKey1 = GlobalKey();
-  //List<Kasa> kasalist = [];
-  //Kasa kas = Kasa(1, "", 1);
-  String acikla = "";
-  num deger = 0;
-  ValueNotifier<int> _counter;
-  TextEditingController conacik;
-  TextEditingController condeg;
-  List<Kasa> kasalist = [];
-  Kasa kas = Kasa(1, "", 1);
-  DateTime pickedDate;
-  // Satisfatayrinticontroller _sfcontroller;
-
-  @override
-  Widget _dropdownbutton(List<Kasa> userlist) {
-    return Container(
-      padding: EdgeInsets.all(1),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        border: Border.all(),
-        //    borderRadius: BorderRadius.all(Radius.circular(15.0) //),
-      ),
-      child: DropdownButton<Kasa>(
-        value: kas ?? Kasa(1, "", 1),
-        underline: SizedBox(),
-        isExpanded: true,
-        icon: Icon(FontAwesomeIcons.arrowDown),
-        //  hint: Text("  $dropdownvalue"),
-        // value: selectedUser[index],
-        onChanged: (Kasa value) {
-          kas = value;
-          setState(() {
-            _counter.value++;
-            print("kasaa");
-          });
-        },
-        items: userlist.map((Kasa user) {
-          return DropdownMenuItem<Kasa>(
-            value: user,
-            child: Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  user.kasaAd,
-                  style: Load.font(0),
-                ),
-              ],
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    print("ayrinti intitee");
-    //_sfcontroller = Get.put(Satisfatayrinticontroller(widget.dt));
-    //  _sfcontroller.fetchfinaltodo(widget.dt);
-    print("ooo");
-    print("${widget.dte.geneltoplam}---${widget.dte.alinmism}");
-    // _sfcontroller.inittekalan(widget.dt.geneltoplam - widget.dt.alinmism);
-    pickedDate = DateTime.now();
-    _counter = ValueNotifier<int>(0);
-    _tabController = TabController(vsync: this, length: 2);
-    contar = TextEditingController();
-    conacik = TextEditingController();
-    condeg = TextEditingController(
-        text: (widget.dte.geneltoplam - widget.dte.alinmism).toString());
-    Future.wait([
-      APIServices.tahsharfaticin(widget.dte.tahsid),
-      APIServices.kasalistal(),
-      APIServices.fatuurundetay(widget.dte.fatid)
-    ]).then((value) {
-      setState(() {
-        _isloading = false;
-        ltah = value[0];
-        kasalist = value[1];
-        kas = kasalist[0];
-        lis = value[2];
-      });
-    });
-  }
-
-  Future<void> _pickDate() async {
-    DateTime date = await showDatePicker(
-      locale: Locale("tr"),
-      context: context,
-      firstDate: DateTime(DateTime.now().year - 5),
-      lastDate: DateTime(DateTime.now().year + 5),
-      initialDate: DateTime.now(),
-    );
-    if (date != null)
-      setState(() {
-        pickedDate = date;
-      });
-  }
-
-  Future buildsatisfattahs(BuildContext context, Size size, int tahsflag) {
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            height: size.height > 750 ? size.height / 5 : size.height / 4,
-            child: Column(
-              //   mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Center(
-                    child: Text(
-                  "Satış Faturası İşlemleri",
-                  style: Load.font(8),
-                )),
-                Divider(),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        final dynamic _toolTip = _toolTipKey.currentState;
-                        _toolTip.ensureTooltipVisible();
-                      },
-                      child: Tooltip(
-                          key: _toolTipKey,
-                          message: "Pek yakında",
-                          child: Text("Düzenle", style: Load.font(3))),
-                    ),
-                    Divider(),
-                    InkWell(
-                      onTap: () {
-                        if (tahsflag == 1) {
-                        } else {
-                          Navigator.of(context).pop();
-                          buildtahsekle(context, size).then((value) {
-                            //   Navigator.of(context).pop();
-                            setState(() {
-                              print("sertttee");
-                              print(deger.toString());
-                              print(widget.dte.alinmism.toString());
-                              /*     widget.dt.alinmism = widget.dt.alinmism + deger;
-                              if (widget.dt.geneltoplam - widget.dt.alinmism ==
-                                  0) {
-                                widget.dt.durum = 1;
-                              }*/
-                              print(widget.dte.alinmism.toString());
-                            });
-                          });
-                        }
-                      },
-                      child: Text("Tahsilat Ekle",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 16,
-                            decoration: tahsflag == 1
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
-                          )),
-                    ),
-                    Divider(),
-                    InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text("İptal", style: Load.font(2))),
-                  ],
-                )
-              ],
-            ),
-          );
-        });
-  }
-
-  Future buildtahsekle(
-    BuildContext context,
-    Size size,
-  ) {
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return StatefulBuilder(builder: (context, setState) {
-            return Container(
-              height: size.height > 750
-                  ? (4 * size.height) / 10
-                  : (4 * size.height) / 8,
-              child: Column(
-                //   mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      IconButton(
-                          icon: Icon(Icons.arrow_back), onPressed: () {}),
-                      Text("Tahsilat Ekle", style: Load.font(4)),
-                      Spacer(),
-                      Text(
-                          "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}"),
-                      IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.calendar,
-                            size: 18,
-                          ),
-                          onPressed: () {
-                            _pickDate().then((value) {
-                              setState(() {});
-                            });
-                          }),
-                      SizedBox(
-                        width: 12,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(
-                                FontAwesomeIcons.moneyCheck,
-                                size: 18,
-                              ),
-                            ),
-                            Expanded(
-                                child: ValueListenableBuilder(
-                                    valueListenable: _counter,
-                                    builder: (context, value, child) {
-                                      return _dropdownbutton(kasalist);
-                                    })),
-                            SizedBox(
-                              width: 12,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(
-                                FontAwesomeIcons.moneyBill,
-                                size: 18,
-                              ),
-                            ),
-                            Expanded(
-                                child: TextFormField(
-                              decoration:
-                                  new InputDecoration(hintText: 'Meblağ'),
-                              validator: (value) {
-                                print("uu");
-                                var x = num.tryParse(value);
-                                if (x == null) {
-                                  return "Lütfen geçerli bir sayı giriniz";
-                                }
-                                if (x >
-                                    (widget.dte.geneltoplam -
-                                        widget.dte.alinmism)) {
-                                  return "Kalan miktardan daha büyük bir sayı giremezsiniz";
-                                }
-                                return null;
-
-                                // validation logic
-                              },
-                              onSaved: (v) {
-                                var x = num.tryParse(v);
-
-                                deger = x;
-                              },
-                            )),
-                            SizedBox(
-                              width: 12,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 12,
-                            ),
-                            /*   Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(
-                                FontAwesomeIcons.exp,
-                                size: 18,
-                              ),
-                            ),*/
-                            Expanded(
-                                child: TextFormField(
-                              decoration:
-                                  new InputDecoration(hintText: 'Açıklama'),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Açıklama kısmı boş olamaz";
-                                }
-                                return null;
-                              },
-                              onSaved: (v) {
-                                acikla = v;
-                              },
-                            )),
-                            SizedBox(
-                              width: 12,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text("Vazgeç", style: Load.font(1))),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            InkWell(
-                                onTap: () async {
-                                  if (_formKey.currentState.validate()) {
-                                    print("ggg");
-                                    _formKey.currentState.save();
-
-                                    Tahsput tp = Tahsput(
-                                        widget.dte.tahsid,
-                                        deger,
-                                        widget.dte.geneltoplam,
-                                        pickedDate.toString(),
-                                        9, //    kas.kasaid,
-                                        acikla);
-
-                                    bool b =
-                                        await APIServices.tahsharguncelle(tp);
-                                    //    _sfcontroller.guncelle(deger);
-                                    Get.find<Satisfatcontroller>()
-                                        .guncelle(widget.dte.fatid, deger);
-                                    Get.find<Satistahscontroller>()
-                                        .guncelle(widget.dte.fatid, deger);
-                                    Get.find<Satisgecicontroller>()
-                                        .guncelle(widget.dte.fatid, deger);
-                                    print(b.toString());
-                                    /*    _sfcontroller.tahsharekle(Dtotahsharfat(
-                                        -1,
-                                        widget.dt.tahsid,
-                                        pickedDate.toString(),
-                                        9,
-                                        "q",
-                                        acikla,
-                                        deger,
-                                        widget.dt.cariad));*/
-                                    ltah.add(Dtotahsharfat(
-                                        -1,
-                                        widget.dte.tahsid,
-                                        DateFormat.yMMMEd('tr_TR').format(
-                                            DateTime.parse(pickedDate
-                                                .toString())), //         pickedDate.toString(),
-                                        9,
-                                        "kasaad",
-                                        acikla,
-                                        deger,
-                                        widget.dte.cariad));
-
-                                    Get.find<Mustliscontroller>()
-                                        .mustbakguncel(widget.dte.cariId, deger);
-                                    deger = 0;
-                                    Navigator.of(context).pop();
-                                  } else {
-                                    print("hfgf");
-                                  }
-                                },
-                                child:
-                                    Text("Tahsilat Ekle", style: Load.font(3))),
-                            SizedBox(
-                              width: 12,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 5,
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            );
-          });
-        });
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    print("satayrinti disposda");
-    //_sfcontroller.dispose();
-    print("contt disposda");
-    _counter.dispose();
-    _tabController.dispose();
-    contar.dispose();
-    conacik.dispose();
-    condeg.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print("qq");
-    print(widget.dte.alinmism);
-    final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(52, 213, 235, 1),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(120),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.dte.fataciklama,
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          Load.numfor.format(widget.dte.geneltoplam
-                              .round()), //      "${widget.dt.geneltoplam}",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.liraSign,
-                          color: Colors.white,
-                          size: 18,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(FontAwesomeIcons.building,
-                            color: Colors.white, size: 18),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          widget.dte.cariad,
-                          style: Load.font(5),
-                        ),
-                      ],
-                    ),
-                    widget.dte.durum == 1
-                        ? Container(
-                            padding: EdgeInsets.all(6.0),
-                            decoration: new BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Text(
-                              "Ödendi",
-                              style: Load.font(3),
-                            ),
-                          )
-                        : Text(""),
-                  ],
-                ),
-              ),
-              TabBar(
-                //  isScrollable: true,
-                unselectedLabelColor: Colors.grey[300],
-                labelColor: Colors.white,
-                controller: _tabController,
-                indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(color: Colors.white, width: 8.0),
-                  insets: EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 40.0),
-                ),
-                tabs: <Widget>[
-                  Container(
-                    width: size.width / 3,
-                    child: Tab(
-                      text: "BİLGİLER",
-                    ),
-                  ),
-                  Container(
-                    width: size.width / 3,
-                    child: Tab(
-                      text: "TAHSİLATLAR",
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        //   title: Text("Satışlar"),
-        actions: [
-          Container(
-            padding: EdgeInsets.all(6.0),
-            decoration: new BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.circular(4),
-              /* border: new Border(
-                                      right: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      left: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      top: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      bottom: new BorderSide(
-                                          width: 1.0, color: Colors.grey))*/
-            ),
-            child: InkWell(
-              onTap: () {},
-              child: Center(
-                child: Text(
-                  "Paylaş",
-                  style: Load.font(5),
-                ),
-              ),
-            ),
-          ),
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.ellipsisV, size: 18,
-              // color: Colors.white,
-            ),
-            onPressed: () {
-              buildsatisfattahs(context, size, widget.dte.durum);
-            },
-          )
-        ],
-      ),
-      body: Container(
-        color: Colors.grey[200],
-        child: Column(
-          children: [
-            //  Align(alignment: Alignment.centerLeft, child: Text("Nisan 2021")),
-            Expanded(
-              // child: Container(
-              //     color: Colors.grey[300],
-              child: TabBarView(
-                controller: _tabController,
-                children: <Widget>[
-                  _isloading == true
-                      ? Center(child: CircularProgressIndicator())
-                      : Tabbilgiwdg(widget.dte, lis, size),
-                  _isloading == true
-                      ? Center(child: CircularProgressIndicator())
-                      : Tabtahsilatwdg(ltah),
-                ],
-              ),
-              //    ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}*/
 
 class Tabbilgiwdg extends StatelessWidget {
   final Dtofattahs dt;
@@ -1372,20 +641,6 @@ class _SatislaState extends State<Satisla> with TickerProviderStateMixin {
       _handleTabSelection();
     });
     contara = TextEditingController();
-
-    /*Future.wait([
-      APIServices.satfatal(),
-      APIServices.verial(),
-      //  APIServices.satcarifatal(widget.dt.cariId),
-    ]).then((value) {
-      setState(() {
-        lis = value[0];
-        gd = value[1].where((i) => i.tur == 1 && i.durum == 0).toList();
-        tahsmik = gd[0].toplammiktar - gd[0].alinan;
-        _isloading = false;
-   
-      });
-    });*/
   }
 
   _handleTabSelection() {
@@ -1408,6 +663,7 @@ class _SatislaState extends State<Satisla> with TickerProviderStateMixin {
     // TODO: implement dispose
     contara.dispose();
     //tab controller dispose yap
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -1617,17 +873,7 @@ class _SatislaState extends State<Satisla> with TickerProviderStateMixin {
                                     isara)
                                 : Satistu(Get.find<Satisfatcontroller>().lisay,
                                     lisara, isara);
-                    //return Satistu(Get.find<Satisfatcontroller>().listdtofatta,
-                    //  lisara, isara);
                   }),
-                  /*  Obx(() {
-                    if (Get.find<Satistahscontroller>().isLoading.value) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Satistahsed(isara);
-                  }),*/
                   Satistahsed(isara),
                   Satistahsge(isara),
                 ],
@@ -1675,14 +921,6 @@ class _SatislaState extends State<Satisla> with TickerProviderStateMixin {
                   children: [
                     InkWell(
                         onTap: () {
-                          /*   APIServices.satfatal().then((value) {
-                            setState(() {
-                              Navigator.of(context).pop();
-                              lis = value;
-                              isfiltre = true;
-                              duztar = "TÜMÜ";
-                            });
-                          });*/
                           Get.find<Satisfatcontroller>()
                               .siradegistir(0)
                               .then((v) {
@@ -1937,19 +1175,6 @@ class _SatistahsedState extends State<Satistahsed>
     super.initState();
     bugun = DateTime.now();
     bugun = DateTime(bugun.year, bugun.month, bugun.day);
-    print("ilktee");
-
-    /* APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });*/
-    /*   APIServices.satfatalacikfat().then((value) {
-      setState(() {
-        print(value.toString());
-        listdttahsedil = value;
-        _isloading = false;
-      });
-    });*/
   }
 
   @override
@@ -2103,18 +1328,6 @@ class _SatistahsgeState extends State<Satistahsge>
     super.initState();
     bugun = DateTime.now();
     bugun = DateTime(bugun.year, bugun.month, bugun.day);
-    print("ilktee");
-    /* APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paragec = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paragec[0].alinan.toString());
-    });*/
-    /*   APIServices.tahsgecikmisal().then((value) {
-      setState(() {
-        print(value.toString());
-        listdttahsgecik = value;
-        _isloading = false;
-      });
-    });*/
   }
 
   @override

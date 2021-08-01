@@ -18,18 +18,18 @@ import 'package:muhmobil/ui/irsaliyelist.dart';
 import 'package:muhmobil/ui/irsayrinti.dart';
 import 'package:textfield_search/textfield_search.dart';
 
-import 'load.dart';
+import '../utils/load.dart';
 
-class Search extends StatefulWidget {
-  Search({Key key, this.title}) : super(key: key);
+class Irsaliyeara extends StatefulWidget {
+  Irsaliyeara({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _SearchState createState() => _SearchState();
+  _IrsaliyearaState createState() => _IrsaliyearaState();
 }
 
-class _SearchState extends State<Search> {
+class _IrsaliyearaState extends State<Irsaliyeara> {
   List<Dtoirsaliye> listir = [];
   num contara = 0;
   num contgen = 0;
@@ -46,51 +46,16 @@ class _SearchState extends State<Search> {
     myController = TextEditingController();
     myController2 = TextEditingController();
     myController3 = TextEditingController();
-    //myController.addListener(_printLatestValue);
-    // myController2.addListener(_printLatestValue);
-    //myController3.addListener(_printLatestValue);
   }
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
-    //myController.dispose();
-    //myController2.dispose();
-    // myController3.dispose();
     super.dispose();
   }
 
-  // mocking a future
-  Future<List> fetchSimpleData() async {
-    await Future.delayed(Duration(milliseconds: 2000));
-    List _list = new List();
-    // create a list from the text input of three items
-    // to mock a list of items from an http call
-    Kasal x = Kasal("d", 1, "dd", 12);
-    Kasal u = Kasal("u", 2, "uu", 12);
-    _list.add(x);
-    _list.add(u);
-
-    return _list;
-  }
-
-  // mocking a future that returns List of Objects
   Future<List> fetchComplexData() async {
     // await Future.delayed(Duration(milliseconds: 1000));
     List _list = new List();
-    List li = new List();
-    List _jsonList = [
-      {'label': 'Text' + ' Item 1', 'value': 30},
-      {'label': 'Text' + ' Item 2', 'value': 31},
-      {'label': 'Text' + ' Item 3', 'value': 32},
-    ];
-    Kasal x = Kasal("dd", 1, "ddd", 12);
-    Kasal u = Kasal("uu", 2, "ddd", 12);
-    var y = x.toMap();
-    var m = u.toMap();
-    li.add(new Kasal.fromMap(y));
-    //  _list.add(new Kasal.fromMap(m));
 
     var q = await APIServices.searchmust(myController2.text);
 
@@ -99,40 +64,20 @@ class _SearchState extends State<Search> {
       _list.add(Labcari.fromMap(p));
     }
     return _list;
-    // create a list from the text input of three items
-    // to mock a list of items from an http call where
-    // the label is what is seen in the textfield and something like an
-    // ID is the selected value
-
-    // _list.add(new TestItem.fromJson(_jsonList[1]));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*  appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),*/
       body: LoadingOverlay(
         isLoading: loadapi,
         opacity: Load.opacit,
         progressIndicator: Load.prog,
         child: Padding(
           padding: EdgeInsets.all(20),
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
           child: Form(
             child: ListView(
               children: <Widget>[
-                /* SizedBox(height: 16),
-                TextFieldSearch(
-                    label: 'Simple Future List',
-                    controller: myController2,
-                    future: () {
-                      return fetchSimpleData();
-                    }),*/
                 SizedBox(height: 16),
                 TextFieldSearch(
                   label: 'Müşteri seçiniz',
@@ -157,11 +102,6 @@ class _SearchState extends State<Search> {
                   textStyle: TextStyle(color: Colors.red),
                   decoration: InputDecoration(hintText: 'Müşteri seçiniz'),
                 ),
-                /*    SizedBox(height: 16),
-                TextFieldSearch(
-                    initialList: _testList,
-                    label: 'Simple List',
-                    controller: myController),*/
                 SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -189,13 +129,6 @@ class _SearchState extends State<Search> {
                                 color: Colors
                                     .white), //Color.fromRGBO(64, 75, 96, .9)),
                             child: ListTile(
-                              /*onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Irsayrinti(dt)),
-                                );
-                              },*/
                               contentPadding: EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 6.0),
                               leading: Container(
@@ -219,8 +152,6 @@ class _SearchState extends State<Search> {
                                 dt.aciklama,
                                 style: Load.font(0),
                               ),
-                              // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
                               subtitle: Row(
                                 children: <Widget>[
                                   Text(
@@ -230,19 +161,6 @@ class _SearchState extends State<Search> {
                                   //      Text(" Intermediate", style: TextStyle(color: Colors.black))
                                 ],
                               ),
-                              /*    trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "3 gün", //   " ${dt.geneltoplam - dt.alinmism}",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      dt.vadta == null
-                          ? Text("nu")
-                          : Text(" ${dt.vadta.substring(0, 4)}",
-                              style: TextStyle(color: Colors.grey))
-                    ],
-                  ),*/
                             ),
                           ));
                     }),
@@ -269,9 +187,8 @@ class _SearchState extends State<Search> {
                           loadapi = true;
                         });
                         List<int> h = await APIServices.irsifatyap(
-                            c.cariId,
-                            DateTime(2015).toString(),
-                            DateTime(2025).toString());
+                          c.cariId,
+                        );
                         for (int i = 0; i < listir.length; i++) {
                           contara = contara + listir[i].aratop;
                           contgen = contgen + listir[i].geneltop;

@@ -43,7 +43,6 @@ dependencies:
   google_fonts: ^1.0.0
   font_awesome_flutter: ^8.10.0
   pdf: ^2.1.0
-  advance_pdf_viewer: ^1.1.5
   esys_flutter_share: ^1.0.0
   path_provider: ^1.6.28
   device_preview: ^0.6.2-beta

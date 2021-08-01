@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -143,7 +143,7 @@ class _GunceldurumState extends State<Gunceldurum>
               children: [
                 InkWell(
                   onTap: () async {
-                 //   var z = await izlemepdf();
+                    //   var z = await izlemepdf();
                     //var sharePdf = await ekstrepdf();
                     //  await Share.file(
                     //      'PDF Document',
@@ -152,8 +152,8 @@ class _GunceldurumState extends State<Gunceldurum>
                     //          '*/*',
                     //    );
                     //PDFViewer(
-                     // document: z,
-                      //zoomSteps: 1,
+                    // document: z,
+                    //zoomSteps: 1,
                     //);
                   },
                   child: Text(

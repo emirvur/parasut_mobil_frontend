@@ -1,4 +1,3 @@
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,13 +62,8 @@ class _MusteriayrintiState extends State<Musteriayrinti>
     conacik = TextEditingController();
     condeg = TextEditingController();
 
-    /*APIServices.kasalistal().then((value) {
-      kasalist = value;
-      kas = kasalist[0];
-    });*/
     Future.wait([
       APIServices.safcarial(widget.dt.cariId),
-      //  APIServices.satcarifatal(widget.dt.cariId),
     ]).then((value) {
       setState(() {
         _isloading = false;
@@ -362,13 +356,13 @@ class _MusteriayrintiState extends State<Musteriayrinti>
                     children: [
                       InkWell(
                           onTap: () async {
-                            var y = await izlemepdf();
+                            /*   var y = await izlemepdf();
                             print(y.toString());
                             print("yyy");
                             PDFViewer(
                               document: y,
                               zoomSteps: 1,
-                            );
+                            );*/
                           },
                           child: Text(
                             widget.dt.cariunvani,

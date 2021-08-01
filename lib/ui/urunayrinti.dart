@@ -57,13 +57,8 @@ class _UrunayrintiState extends State<Urunayrinti>
     conacik = TextEditingController();
     condeg = TextEditingController();
 
-    /*APIServices.kasalistal().then((value) {
-      kasalist = value;
-      kas = kasalist[0];
-    });*/
     Future.wait([
       APIServices.urungecmisial(widget.dt.barkodno),
-      //  APIServices.satcarifatal(widget.dt.cariId),
     ]).then((value) {
       setState(() {
         _isloading = false;

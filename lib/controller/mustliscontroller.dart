@@ -15,7 +15,6 @@ class Mustliscontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satisfatcontte init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -34,33 +33,20 @@ class Mustliscontroller extends GetxController {
 
   void guncelle(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
-    try {
-      print("tryddadsad");
-      //for (var i in listdtofatta) {
-      print("fordaa");
-      //if (i.fatid == index) {
-      //   i.alinmism = i.alinmism + deg;
-      //   }}
-      // tahsmik = tahsmik - deg;
-    } finally {
+    try {} finally {
       isLoading(false);
     }
   }
 
   void mustbakguncel(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       for (var i in listdtofatta) {
-        print("fordaa");
         if (i.cariId == index) {
           i.bakiye = i.bakiye - deg;
         }
-        print("cıkrtııt");
       }
       tahsmik = tahsmik - deg;
     } finally {
@@ -70,11 +56,8 @@ class Mustliscontroller extends GetxController {
 
   void yenimust(Dtocarilist yeni) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
-
       listdtofatta.add(yeni);
     } finally {
       isLoading(false);
@@ -104,18 +87,13 @@ class _CarihesState extends State<Carihes> with TickerProviderStateMixin {
     super.initState();
     _tabController = TabController(vsync: this, length: 1);
     contara = TextEditingController();
-    /*  APIServices.musterial().then((value) {
-      setState(() {
-        lis = value;
-        _isloading = false;
-      });
-    });*/
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     contara.dispose();
+    _tabController.dispose();
     //tab controller dispose yap
     super.dispose();
   }
@@ -282,10 +260,6 @@ class Buildcari extends StatelessWidget {
                     Dtocarilist(dt.cariId, dt.cariunvani, "", dt.bakiye);
                 print("fff");
                 print(dt.bakiye.toString());
-                //    c.bakiye = dt.bakiye;
-                //      c.cariId = dt.cariId;
-                //        c.cariunvani = dt.cariunvani;
-                //     c.katad = "";
 
                 Navigator.push(
                   context,

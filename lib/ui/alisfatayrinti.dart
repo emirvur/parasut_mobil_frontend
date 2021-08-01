@@ -881,74 +881,45 @@ class Tabodemewdg extends StatelessWidget {
       itemBuilder: (context, index) {
         Dtoodeharfat th = dt[index];
         return Card(
-                elevation: 0,
-                margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
-                    ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
-                  child: ListTile(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
-                    leading: Container(
-                      padding: EdgeInsets.all(6.0),
-                      decoration: new BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(4),
-                          border: new Border(
-                              right: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              left: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              top: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              bottom: new BorderSide(
-                                  width: 1.0, color: Colors.grey))),
-                      child: Icon(FontAwesomeIcons.arrowUp, color: Colors.blue),
-                    ),
-                    title: Text(
-                      "${th.kasaad}",
-                      style: Load.font(0),
-                    ),
-                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                    subtitle: Text(
-                      " ${th.odenmistar}",
-                      style: Load.font(1),
-                    ),
-                    trailing: Text(
-                      Load.numfor.format(
-                          th.odendimik.round()), //     "${th.odendimik}",
-                      style: Load.font(0),
-                    ),
-                  ),
-                ))
-            /*Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.download_done_outlined,
-                  color: Colors.grey,
+            elevation: 0,
+            margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
                 ),
-                title: Text('${th.kasaid} kasa ad'),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
+              child: ListTile(
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
+                leading: Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: new BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(4),
+                      border: new Border(
+                          right: new BorderSide(width: 1.0, color: Colors.grey),
+                          left: new BorderSide(width: 1.0, color: Colors.grey),
+                          top: new BorderSide(width: 1.0, color: Colors.grey),
+                          bottom:
+                              new BorderSide(width: 1.0, color: Colors.grey))),
+                  child: Icon(FontAwesomeIcons.arrowUp, color: Colors.blue),
+                ),
+                title: Text(
+                  "${th.kasaad}",
+                  style: Load.font(0),
+                ),
+                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
                 subtitle: Text(
-                  "${th.tediltar}",
-                  style: TextStyle(color: Colors.grey),
+                  " ${th.odenmistar}",
+                  style: Load.font(1),
                 ),
                 trailing: Text(
-                  "${th.alinmismik} TL",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  Load.numfor
+                      .format(th.odendimik.round()), //     "${th.odendimik}",
+                  style: Load.font(0),
                 ),
               ),
-              Divider(
-                color: Colors.black,
-              )
-            ],
-          ),
-        )*/
-            ;
+            ));
       },
     );
     // );

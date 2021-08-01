@@ -4,8 +4,7 @@ class Dtocarilist {
   String katad;
   num bakiye;
 
-  Dtocarilist(this.cariId, this.cariunvani, this.katad,
-      this.bakiye); //kategori eklerken kullan, çünkü id db tarafından olusturuluyor
+  Dtocarilist(this.cariId, this.cariunvani, this.katad, this.bakiye);
 
   Dtocarilist.fromMap(Map<String, dynamic> map) {
     // this.id = map['id'];

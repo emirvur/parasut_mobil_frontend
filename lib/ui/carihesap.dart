@@ -47,6 +47,7 @@ class _CarihesapState extends State<Carihesap> with TickerProviderStateMixin {
     // TODO: implement dispose
     contara.dispose();
     //tab controller dispose yap
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -70,32 +71,7 @@ class _CarihesapState extends State<Carihesap> with TickerProviderStateMixin {
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(75),
             child: Column(
-              children: [
-                /*  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Tahsil edilecek",
-                            style: Load.font(5),
-                          ),
-                          Text("xx", style: Load.font(5))
-                        ],
-                      ),
-                      /*   Column(
-                        children: [
-                          Text("Ödenecek",
-                              style: TextStyle(color: Colors.white)),
-                          Text("43", style: TextStyle(color: Colors.white))
-                        ],
-                      )*/
-                    ],
-                  ),
-                ),*/
-              ],
+              children: [],
             ),
           ),
           title: isara == false

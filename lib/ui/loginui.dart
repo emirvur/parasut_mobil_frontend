@@ -1,4 +1,4 @@
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
+
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -124,18 +124,6 @@ class _LoginuiState extends State<Loginui> {
                                           builder: (context) => Splash()),
                                     );
                                   }
-                                  /*       var z = await izlemepdf();
-                                  PDFViewer(
-                                    document: z,
-                                    zoomSteps: 1,
-                                  );
-                                  var sharePdf = await ekstrepdf();
-                                  await Share.file(
-                                    'PDF Document',
-                                    'project.pdf',
-                                    sharePdf,
-                                    ',  //bu satiri sildim
-                              //    );*/
                                 },
                                 style: ButtonStyle(
                                     backgroundColor:

@@ -63,13 +63,8 @@ class _KasaayrintiState extends State<Kasaayrinti>
     conacik = TextEditingController();
     condeg = TextEditingController();
 
-    /*APIServices.kasalistal().then((value) {
-      kasalist = value;
-      kas = kasalist[0];
-    });*/
     Future.wait([
       APIServices.kasahar(widget.dt.kasaid),
-      //  APIServices.satcarifatal(widget.dt.cariId),
     ]).then((value) {
       setState(() {
         _isloading = false;
@@ -450,51 +445,6 @@ class _KasaayrintiState extends State<Kasaayrinti>
                     ],
                   ),
                 ),
-                /*Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.comment_bank,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            widget.dt.,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      widget.dt.durum == 1
-                          ? Container(
-                              padding: EdgeInsets.all(6.0),
-                              decoration: new BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4),
-                                /* border: new Border(
-                                      right: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      left: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      top: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      bottom: new BorderSide(
-                                          width: 1.0, color: Colors.grey))*/
-                              ),
-                              child: Text(
-                                "Ödendi",
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                            )
-                          : Text("")
-                    ],
-                  ),
-                ),*/
                 TabBar(
                   //  isScrollable: true,
                   unselectedLabelColor: Colors.grey[300],
@@ -524,31 +474,6 @@ class _KasaayrintiState extends State<Kasaayrinti>
           ),
           //   title: Text("Satışlar"),
           actions: [
-            /*Container(
-              padding: EdgeInsets.all(6.0),
-              decoration: new BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(4),
-                /* border: new Border(
-                                      right: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      left: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      top: new BorderSide(
-                                          width: 1.0, color: Colors.grey),
-                                      bottom: new BorderSide(
-                                          width: 1.0, color: Colors.grey))*/
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    "Ekstre",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),*/
             IconButton(
               icon: Icon(
                 FontAwesomeIcons.ellipsisV, size: 18,
@@ -630,19 +555,6 @@ class Tabkasagecmis extends StatefulWidget {
 }
 
 class _TabkasagecmisState extends State<Tabkasagecmis> {
-  /* List<Dtofattahs> lis = [];
-  @override
-  void initState() {
-    super.initState();
-    print("ilktee");
-    APIServices.satcarifatal(widget.cariId).then((value) {
-      setState(() {
-        print(value.toString());
-        lis = value;
-      });
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -654,117 +566,88 @@ class _TabkasagecmisState extends State<Tabkasagecmis> {
         print("ppp");
         print(th.durum.toString());
         return Card(
-                elevation: 0,
-                margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
-                    ),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
-                  child: ListTile(
-                    onTap: () {
-                      /*    Navigator.push(
+            elevation: 0,
+            margin: new EdgeInsets.symmetric(vertical: 1.0 //horizontal:10
+                ),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white), //Color.fromRGBO(64, 75, 96, .9)),
+              child: ListTile(
+                onTap: () {
+                  /*    Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => Satisfatayrinti(th)));*/
-                    },
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
-                    leading: Container(
-                      padding: EdgeInsets.all(6.0),
-                      decoration: new BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(4),
-                          border: new Border(
-                              right: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              left: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              top: new BorderSide(
-                                  width: 1.0, color: Colors.grey),
-                              bottom: new BorderSide(
-                                  width: 1.0, color: Colors.grey))),
-                      child: Icon(FontAwesomeIcons.fileAlt,
-                          color: th.durum == 1
-                              ? Colors.blue
-                              : th.durum == 0
-                                  ? Colors.red
-                                  : Colors.green),
-                    ),
-                    title: Text(
-                      th.durum == 1
-                          ? "Tahsilat"
+                },
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
+                leading: Container(
+                  padding: EdgeInsets.all(6.0),
+                  decoration: new BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(4),
+                      border: new Border(
+                          right: new BorderSide(width: 1.0, color: Colors.grey),
+                          left: new BorderSide(width: 1.0, color: Colors.grey),
+                          top: new BorderSide(width: 1.0, color: Colors.grey),
+                          bottom:
+                              new BorderSide(width: 1.0, color: Colors.grey))),
+                  child: Icon(FontAwesomeIcons.fileAlt,
+                      color: th.durum == 1
+                          ? Colors.blue
                           : th.durum == 0
-                              ? "Ödeme"
+                              ? Colors.red
+                              : Colors.green),
+                ),
+                title: Text(
+                  th.durum == 1
+                      ? "Tahsilat"
+                      : th.durum == 0
+                          ? "Ödeme"
+                          : "",
+                  style: Load.font(0),
+                ),
+                // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
+
+                subtitle: Row(
+                  children: [
+                    Text(
+                      th.durum == 1
+                          ? "${th.tahsaciklama}"
+                          : th.durum == 0
+                              ? "${th.odaciklama},"
+                              : "${th.miktaraciklamasi}",
+                      style: Load.font(1),
+                    ),
+                    Text(
+                      th.durum == 1
+                          ? "${th.tediltar}"
+                          : th.durum == 0
+                              ? "${th.odenmistar}"
                               : "",
+                      style: Load.font(1),
+                    ),
+                  ],
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      Load.numfor.format(th.durum == 1
+                          ? th.alinmismik.round()
+                          : th.durum == 0
+                              ? th.odendimik.round()
+                              : th.miktar.round()), //   "${th.alinmismik}",
                       style: Load.font(0),
                     ),
-                    // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-
-                    subtitle: Row(
-                      children: [
-                        Text(
-                          th.durum == 1
-                              ? "${th.tahsaciklama}"
-                              : th.durum == 0
-                                  ? "${th.odaciklama},"
-                                  : "${th.miktaraciklamasi}",
-                          style: Load.font(1),
-                        ),
-                        Text(
-                          th.durum == 1
-                              ? "${th.tediltar}"
-                              : th.durum == 0
-                                  ? "${th.odenmistar}"
-                                  : "",
-                          style: Load.font(1),
-                        ),
-                      ],
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          Load.numfor.format(th.durum == 1
-                              ? th.alinmismik.round()
-                              : th.durum == 0
-                                  ? th.odendimik.round()
-                                  : th.miktar.round()), //   "${th.alinmismik}",
-                          style: Load.font(0),
-                        ),
-                        Icon(
-                          FontAwesomeIcons.liraSign,
-                          size: 12,
-                        )
-                      ],
-                    ),
-                  ),
-                ))
-            /*Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ListTile(
-                leading: Icon(
-                  Icons.download_done_outlined,
-                  color: Colors.grey,
-                ),
-                title: Text('${th.kasaid} kasa ad'),
-                subtitle: Text(
-                  "${th.tediltar}",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Text(
-                  "${th.alinmismik} TL",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                    Icon(
+                      FontAwesomeIcons.liraSign,
+                      size: 12,
+                    )
+                  ],
                 ),
               ),
-              Divider(
-                color: Colors.black,
-              )
-            ],
-          ),
-        )*/
-            ;
+            ));
       },
     );
     // );

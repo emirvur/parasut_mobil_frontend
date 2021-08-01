@@ -59,29 +59,9 @@ class _SatislarState extends State<Satislar> with TickerProviderStateMixin {
     });
     contara = TextEditingController();
 
-    /*APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      gd = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(gd[0].alinan.toString());
-    });
-
-    APIServices.satfatal().then((value) {
-      setState(() {
-        lis = value;
-        _isloading = false;
-      });
-    });
-    APIServices.verial().then((value) {
-      setState(() {
-        gd = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-        tahsmik = gd[0].toplammiktar - gd[0].alinan;
-        _isloading = false;
-      });
-    });*/
-
     Future.wait([
       APIServices.satfatal(),
       APIServices.verial(),
-      //  APIServices.satcarifatal(widget.dt.cariId),
     ]).then((value) {
       setState(() {
         lis = value[0];
@@ -370,10 +350,6 @@ class _SatislarState extends State<Satislar> with TickerProviderStateMixin {
                     ),
                     InkWell(
                         onTap: () {
-                          /*       APIServices.callstp(DateTime(2005), DateTime(2035)).then((value) {
-      paratahs = value.where((i) => i.tur == 1 && i.durum == 0).toList();
-      print(paratahs[0].alinan.toString());
-    });*/
                           APIServices.satishafta().then((value) {
                             setState(() {
                               Navigator.of(context).pop();

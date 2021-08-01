@@ -24,7 +24,7 @@ class Cari {
       this.adres,
       this.turu,
       this.tckn,
-      this.bakiye); //kategori eklerken kullan, çünkü id db tarafından olusturuluyor
+      this.bakiye);
 
   Map<String, dynamic> toMap(int x) {
     var map = Map<String, dynamic>();

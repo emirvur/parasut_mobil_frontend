@@ -17,7 +17,6 @@ class Tedarliscontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satisfatcontte init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -36,33 +35,20 @@ class Tedarliscontroller extends GetxController {
 
   void guncelle(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
-    try {
-      print("tryddadsad");
-      //for (var i in listdtofatta) {
-      print("fordaa");
-      //if (i.fatid == index) {
-      //   i.alinmism = i.alinmism + deg;
-      //   }}
-      // tahsmik = tahsmik - deg;
-    } finally {
+    try {} finally {
       isLoading(false);
     }
   }
 
   void tedarbakguncel(int index, num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       for (var i in listdtofatta) {
-        print("fordaa");
         if (i.cariId == index) {
           i.bakiye = i.bakiye - deg;
         }
-        print("cıkrtııt");
       }
       tahsmik = tahsmik - deg;
     } finally {
@@ -72,11 +58,8 @@ class Tedarliscontroller extends GetxController {
 
   void yenitedar(Dtocarilist yeni) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
-
       listdtofatta.add(yeni);
     } finally {
       isLoading(false);
@@ -107,12 +90,6 @@ class _TedarikciliState extends State<Tedarikcili>
     super.initState();
     _tabController = TabController(vsync: this, length: 1);
     contara = TextEditingController();
-    /*   APIServices.tedaral().then((value) {
-      setState(() {
-        lis = value;
-        _isloading = false;
-      });
-    });*/
   }
 
   @override
@@ -120,6 +97,7 @@ class _TedarikciliState extends State<Tedarikcili>
     // TODO: implement dispose
     contara.dispose();
     //tab controller dispose yap
+    _tabController.dispose();
     super.dispose();
   }
 

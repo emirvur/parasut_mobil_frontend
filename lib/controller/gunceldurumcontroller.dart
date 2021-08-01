@@ -28,7 +28,6 @@ class Gunceldurumcontroller extends GetxController {
 
   @override
   void onInit() {
-    print("satistahscontt init");
     fetchfinaltodo();
     super.onInit();
   }
@@ -44,7 +43,6 @@ class Gunceldurumcontroller extends GetxController {
           : new DateTime(bugun.year + 1, 1, 0);
       var todos = await APIServices.callstp(buay, buayson);
       num x = await APIServices.kasabakiye();
-      print("qqq");
       print(x.toString());
       print(bakiye.toString());
       bakiye = x;
@@ -56,14 +54,12 @@ class Gunceldurumcontroller extends GetxController {
         v.length == 0
             ? gecicisat.value = [Gunceldurummod(0, 0, 0, 0, 1)]
             : gecicisat.value = todos.where((i) => i.tur == 1).toList();
-        print("pp");
-        //  print(gecicisat[0].alinan.toString());
+
         List y = todos.where((i) => i.tur == 0).toList();
         print(y.length.toString());
         y.length == 0
             ? gecicigider.value = [Gunceldurummod(0, 0, 0, 0, 0)]
             : gecicigider.value = todos.where((i) => i.tur == 0).toList();
-        print("11");
       } else {}
     } finally {
       isLoading(false);
@@ -72,10 +68,8 @@ class Gunceldurumcontroller extends GetxController {
 
   void bakiyedeg(num deg) async {
     isLoading(true);
-    print("bakiyedegdeee");
 
     try {
-      print("tryddadsad");
       print(bakiye.toString());
       bakiye = bakiye + deg;
       print(bakiye.toString());
@@ -86,10 +80,8 @@ class Gunceldurumcontroller extends GetxController {
 
   void aysatguncelle(num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       gecicisat[0].toplammiktar = gecicisat[0].toplammiktar + deg;
       gecicisat[0].fatsayisi = gecicisat[0].fatsayisi + 1;
     } finally {
@@ -99,30 +91,14 @@ class Gunceldurumcontroller extends GetxController {
 
   void ayalisguncelle(num deg) async {
     isLoading(true);
-    print("trydan once");
 
     try {
-      print("tryddadsad");
       gecicigider[0].toplammiktar = gecicigider[0].toplammiktar + deg;
       gecicigider[0].fatsayisi = gecicigider[0].fatsayisi + 1;
     } finally {
       isLoading(false);
     }
   }
-  /* void satffatgeciekleyeni(Dtofattahs yeni) async {
-    isLoading(true);
-    print("trydan once");
-
-    try {
-      print("tryddadsad");
-      if (DateTime.tryParse(yeni.vadta).isBefore(DateTime.now())) {
-        print("ifteee");
-        listdtofatta.add(yeni);
-      }
-    } finally {
-      isLoading(false);
-    }
-  }*/
 }
 
 class Gunceldur extends StatefulWidget {
@@ -525,23 +501,6 @@ class _TabbuhaftaState extends State<Tabbuhafta>
   void initState() {
     // TODO: implement initState
     super.initState();
-/*    bugun = DateTime.now();
-    bugun = DateTime(bugun.year, bugun.month, bugun.day);
-    buhaftabas =
-        DateTime(bugun.year, bugun.month, bugun.day - bugun.weekday + 1);
-    buhaftason =
-        bugun.add(Duration(days: DateTime.daysPerWeek - bugun.weekday));
-    APIServices.callstp(buhaftabas, buhaftason).then((value) {
-      setState(() {
-        gecicisat = widget.guncel.length == 0
-            ? []
-            : value.where((i) => i.tur == 1 && i.durum == 0).toList();
-        gecicigider = widget.guncel.length == 0
-            ? []
-            : value.where((i) => i.tur == 0 && i.durum == 0).toList();
-        _isloading = false;
-      });
-    });*/
   }
 
   @override
@@ -613,21 +572,6 @@ class _TabbugunState extends State<Tabbugun>
   void initState() {
     // TODO: implement initState
     super.initState();
-    /*bugun = DateTime.now();
-    bugun = DateTime(bugun.year, bugun.month, bugun.day);
-    bugece = DateTime(bugun.year, bugun.month, bugun.day + 1);
-    busabah = DateTime(bugun.year, bugun.month, bugun.day, 0, 0, 0);
-    APIServices.callstp(busabah, bugece).then((value) {
-      setState(() {
-        gecicisat = widget.guncel.length == 0
-            ? []
-            : value.where((i) => i.tur == 1 && i.durum == 0).toList();
-        gecicigider = widget.guncel.length == 0
-            ? []
-            : value.where((i) => i.tur == 0 && i.durum == 0).toList();
-        _isloading = false;
-      });
-    });*/
   }
 
   @override
