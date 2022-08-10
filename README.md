@@ -3,7 +3,7 @@
 Bu uygulama ön muhasebe programının temel modüllerini içerir.Paraşüt uygulamasının klonudur.Eğitim amaçlı yapılmıştır.Hiçbir şekilde ticari amaç için kullanılamaz.
 
 - Bu uygulamanın demo videosuna erişmek için https://www.youtube.com/watch?v=Sm1FxdKQzro&t=148s
-- Bu uygulamanın front-end kodlarına erişmek için https://www.youtube.com/watch?v=Sm1FxdKQzro&t=148s
+- Bu uygulamanın front-end kodlarına erişmek için https://github.com/emirvur/parasut_mobil_frontend
 - Back-end kodlarına erişmek için https://github.com/emirvur/parasut_web_muhasebe_clone_backend
 
 #Özellikler
