@@ -20,4 +20,5 @@ Bu uygulama ön muhasebe programının temel modüllerini içerir.Paraşüt uygu
 <img src="screenshots/2022-08-10_17-35-40.png"  width="400" height="600">
 <img src="screenshots/satisfatura.png"  width="400" height="600">
 <img src="screenshots/faturadetay.png"  width="400" height="600">
+<img src="screenshots/tahsilatekle.png"  width="400" height="600">
 <img src="screenshots/urunliste.png"  width="400" height="600">
